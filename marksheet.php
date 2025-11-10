@@ -126,10 +126,14 @@ include "actions.php";
         const tableRows = tableBody.querySelectorAll('tr');
 
         searchInput.addEventListener('keyup', function(event) {
+            // 1. lower case the search input
             const searchTerm = event.target.value.toLowerCase();
 
             tableRows.forEach(function(row) {
+                // 2. lower case the full row text
                 const rowData = row.textContent.toLowerCase();
+
+                // 3. css style.display:none if not matches
                 if (rowData.includes(searchTerm)) {
                     row.style.display = '';
                 } else {

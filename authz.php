@@ -38,33 +38,27 @@ function debug_insert() {
     }
 }
 
-function query_user($mail, $pass) {
+function get_user($mail, $pass) {
     global $conn;
     global $table;
 
     $sql = "SELECT * FROM $table where Mail='$mail' and Pass='$pass'";
 
-    // catch errors here
     try {
         $result = $conn->query($sql);
+
+        // read the row if there's any
+        if ($result->num_rows > 0) {
+            $singleRow = $result ->fetch_assoc();
+            return array($singleRow['Mail'], $singleRow['Pass']);
+        }
     } catch (mysqli_sql_exception $e) {
         err('read error: ' . $e->getMessage());
     }
 
-    return $result;
+    return null;
 }
 
-function get_user($mail, $pass) {
-    global $conn;
-    $singleResult = query_user($mail, $pass);
-
-    if ($singleResult->num_rows > 0) {
-        $singleRow = $singleResult->fetch_assoc();
-        return array($singleRow['Mail'], $singleRow['Pass']);
-    } else {
-        return null;
-    }
-}
 
 function user_exists($mail, $pass) {
     $user = get_user($mail, $pass);

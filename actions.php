@@ -100,8 +100,10 @@ function debug_display() {
     $result = read();
     // print however you want
     while ($row = $result->fetch_assoc()) {
-        foreach ($row as $r) {
-            echo "$r ";
+        // row is a dictionary. Access all the columns this way `row["Name"]`
+        // or just iterate over the keys to print every column
+        foreach ($row as $col) {
+            echo "$col ";
         }
         echo '<br>';
     }
