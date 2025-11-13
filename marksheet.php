@@ -101,7 +101,7 @@ include "actions.php";
                                 echo "<td>" . $row['Name'] . "</td>";
                                 echo "<td>" . $row['Dept'] . "</td>";
                                 echo "<td>" . $row['Course'] . "</td>";
-                                echo "<td>" . $row['GPA'] . "</td>";
+                                echo "<td>" . $row['CGPA'] . "</td>";
                                 echo "<td>
                                         <form action='". $_SERVER['PHP_SELF'] . "' method='post' class='d-inline'>
                                             <input type='hidden' name='delete_id' value='" . $row['ID'] . "'>
